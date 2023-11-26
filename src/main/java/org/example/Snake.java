@@ -8,9 +8,10 @@ import static org.example.GamePanel.UNIT_SIZE;
 public class Snake {
     int bodyParts = 6;
     int appleEaten;
+    public char direction='R';
     final int x[] = new int[GAME_UNITS];
     final int y[] = new int[GAME_UNITS];
-    char direction='R';
+
 
     String color;
 

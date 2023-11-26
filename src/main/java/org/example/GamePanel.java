@@ -15,6 +15,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
     Snake pl1 = new Snake();
     Snake pl2 = new Snake();
+    private String winner;
 
     public void setPl1(Snake pl1) {
         this.pl1 = pl1;
@@ -71,10 +72,14 @@ public class GamePanel extends JPanel implements ActionListener {
     public void draw(Graphics g) {
 
         if(running) {
-            for (int i = 0; i < SCREEN_HEIGHT / UNIT_SIZE; i++) {
+          /*
+          for (int i = 0; i < SCREEN_HEIGHT / UNIT_SIZE; i++) {
                 g.drawLine(i * UNIT_SIZE, 0, i * UNIT_SIZE, SCREEN_HEIGHT);
                 g.drawLine(0, i * UNIT_SIZE, SCREEN_WIDTH, i * UNIT_SIZE);
+
             }
+
+            */
             g.setColor(Color.green);
             pl1.drawSnake(g);
             g.setColor(Color.blue);
@@ -116,18 +121,29 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     public void checkColisions() {
+
        pl1.checkCollisionsSnake();
+       if(!running){
+           winner = "Player 2";
+       }
        pl2.checkCollisionsSnake();
+         if(!running){
+              winner = "Player 1";
+         }
        //check if head pl1 touches pl2
         for (int i=pl2.bodyParts;i>0;i--){
-            if ((pl1.x[0]==pl2.x[i])&&(pl1.y[0]==pl2.y[i])){
-                running=false;
+            if ((pl1.x[0] == pl2.x[i]) && (pl1.y[0] == pl2.y[i])) {
+                running = false;
+                winner = "Player 2";
+                break;
             }
         }
         //check if head pl2 touches pl1
         for (int i=pl1.bodyParts;i>0;i--){
-            if ((pl2.x[0]==pl1.x[i])&&(pl2.y[0]==pl1.y[i])){
-                running=false;
+            if ((pl2.x[0] == pl1.x[i]) && (pl2.y[0] == pl1.y[i])) {
+                running = false;
+                winner = "Player 1";
+                break;
             }
         }
         if(!running){
@@ -142,6 +158,7 @@ public class GamePanel extends JPanel implements ActionListener {
         g.setFont(new Font("Ink Free",Font.BOLD,75));
         FontMetrics metrics1=getFontMetrics(g.getFont());
         g.drawString("GAME OVER",(SCREEN_WIDTH-metrics1.stringWidth("GAME OVER"))/2,SCREEN_HEIGHT/2);
+        g.drawString("Winner: "+winner,(SCREEN_WIDTH-metrics1.stringWidth("GAME OVER"))/2,SCREEN_HEIGHT/3);
     }
 
     @Override
