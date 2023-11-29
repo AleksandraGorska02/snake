@@ -68,11 +68,11 @@ public class GamePanel extends JPanel implements ActionListener {
             */
             g.setColor(Color.green);
             pl1.drawHeadSnake(g);
-            g.setColor(Color.yellow);
+            g.setColor(new Color(0, 100, 0));
             pl1.drawBodySnake(g);
             g.setColor(Color.blue);
             pl2.drawHeadSnake(g);
-            g.setColor(Color.orange);
+            g.setColor(new Color(0, 0, 100));
             pl2.drawBodySnake(g);
             g.setColor(Color.red);
             g.fillOval(appleX, appleY, UNIT_SIZE, UNIT_SIZE);
@@ -84,8 +84,8 @@ public class GamePanel extends JPanel implements ActionListener {
 
     public static void newApple() {
 
-        appleX = random.nextInt((int) (SCREEN_WIDTH / UNIT_SIZE)) * UNIT_SIZE;
-        appleY = random.nextInt((int) (SCREEN_HEIGHT / UNIT_SIZE)) * UNIT_SIZE;
+        appleX = random.nextInt(SCREEN_WIDTH / UNIT_SIZE) * UNIT_SIZE;
+        appleY = random.nextInt(SCREEN_HEIGHT / UNIT_SIZE) * UNIT_SIZE;
 
 
     }

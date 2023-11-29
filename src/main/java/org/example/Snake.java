@@ -24,7 +24,6 @@ public class Snake {
     public void drawBodySnake(Graphics g) {
         for (int i = 0; i < this.bodyParts; i++) {
             if (i == 0) {
-continue;
             } else {
 
                 g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
